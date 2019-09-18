@@ -1,33 +1,46 @@
-var listaTodosHp = document.querySelector('#meus-todos ul');
+// desestruturacao
 
-class Todolist {
-	constructor(){
-		this.todos = [];
-	}
+const pessoa = {
+	nome: "Paulinely Morgan",
+	idade: 30,
+	endereco: {
+		rua: "av. santo antonio",
+		numero: 2000,
+		cidade: "Garanhuns"
+	},
+	pais: "Brasil"
+};
 
-	addTodo(todo){
-		(todo == "") ? this.todos.push('Novo todo') : this.todos.push(todo);
-	}
+const {pais, idade, endereco: {cidade}, nome} = pessoa;
 
-	preecherTodos(){
-		listaTodosHp.innerHTML = "";
+console.log(pais);
+console.log(nome);
+console.log(idade);
+console.log(cidade);
 
-		for(let val of this.todos){
-			let meuLi = document.createElement('li');
+const array = [3, 0, 4, 5, 6];
 
-			meuLi.appendChild(document.createTextNode(val));
-			listaTodosHp.appendChild(meuLi);
-		}
+// rest (...) -> pega todo o resto
+const [primeiro, segundo, ...resto] = array;
 
-		console.log(this.todos);
-	}
-}
+console.log(primeiro);
+console.log(segundo);
+console.log(resto);
 
-const meusTodos = new Todolist();
+//spread ..., ... -> concatena
+const a = [9, 8, 7];
+const b = [6, 5, 4];
+const c = [...a, ...b];
 
-document.getElementById('btn-adicionar').onclick = function () {
-	let novoTodo = document.getElementById('inpt-todo').value;
-	meusTodos.addTodo(novoTodo);
-	meusTodos.preecherTodos();
-}
+console.log(c);
 
+// outra uso para o spread
+const pessoa2 = {...pessoa, nome: "Pessoa2"};
+
+console.log(pessoa2);
+
+// template literals
+const estado = "PE";
+const regiao = "Nordeste";
+
+console.log(`meu estado e\' ${estado} e minha regiao e\' ${regiao}`);
