@@ -1,4 +1,4 @@
-import api from './api';
+import api from './githubAPI.js';
 
 class Usuarios{
 	constructor(){
@@ -10,11 +10,11 @@ class Usuarios{
 		if (nome.length === 0) {return;}
 
 		this.mostrarCarregando();
+
 		try {
 			const usuarioGit = await api.get(`/users/${nome}`);
 			const { login, public_repos } = usuarioGit.data;
 			this.repoUsuarios.push({login, public_repos});
-			// console.log(this.repoUsuarios);
 			this.renderUsuarios();
 
 		} catch(err) {
@@ -49,7 +49,6 @@ class Usuarios{
 			usuariosElementoUl.appendChild(novoElementoLi);
 		});
 	}
-
 }
 
 const objUsuarios = new Usuarios();
